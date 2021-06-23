@@ -18,6 +18,10 @@ $_SESSION = array();
 
 <body>
 	<?php
+	$messaggio=@$_GET['messaggio'];
+	if(isset($messaggio)){
+		alert("Registrazione effettuata con successo, Effettua il Login");
+	}
 	if ((!isset($_POST['username']) || !isset($_POST['password']))) {
 	?>
 		<section class="container-fluid bg">
@@ -56,11 +60,18 @@ $_SESSION = array();
 					session_destroy();
 					session_start();
 					$_SESSION['idUtente'] = $user_row['idUtente'];
-					$_SESSION['nome'] = $user_row['nome'];
-					$_SESSION['cognome'] = $user_row['cognome'];
+					$_SESSION['nome'] = $user_row['Nome'];
+					$_SESSION['cognome'] = $user_row['Cognome'];
 					$_SESSION['username'] = $username;
 					$_SESSION['password'] = $password;
+					$_SESSION['email'] = $user_row['Email'];
 					$_SESSION['start_time'] = time();
+
+
+
+					
+
+
 					header('location:HomePage.php');
 				}
 			}

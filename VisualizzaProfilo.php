@@ -25,7 +25,8 @@ require('Session.php');
                     <a href="https://www.facebook.com/pietro.minelli.589"><img src=" http://localhost/Social-Cars/data/socials/facebook.png" class="d-inline-block align-text-top" height="35" width="35" alt="..." vertical-align:middle></a>
                     <a href="https://www.instagram.com/top_cars020/"><img src="http://localhost/Social-Cars/data/socials//instagram.png" class="d-inline-block align-text-top" height="35" width="35" alt="..."></a>
                     <a href="https://twitter.com/TopCars72640809"><img src="http://localhost/Social-Cars/data/socials/twitter.png" class="d-inline-block align-text-top" height="35" width="35" alt="..."></a>
-                    <a style="float: right;" href="ModificaProfilo.php"><button type="button" class="btn btn-warning">Profilo</button></a>
+                    <a style="float: right;" href="CercaProfili.php"><button type="button" class="btn btn-secondary">Cerca Utenti</button></a>
+                    <a style="float: right; margin-right: 2%;" href="ModificaProfilo.php"><button type="button" class="btn btn-warning">Profilo</button></a>
                     <a style="float: right; margin-right: 2%;" href="Logout.php"><button type="button" class="btn btn-info">Logout</button></a>
                 </div>
             </a>
@@ -44,7 +45,7 @@ require('Session.php');
             while ($tupla = mysqli_fetch_array($result)) {
                 echo "<ul class='list-group'>";
                 if (mysqli_num_rows($result) != 0) {                    
-                    echo "<li class='list-group-item'><img src='http://localhost/Social-Cars/data/loghi/$tupla[marca].png' height='100'/>$tupla[marca] $tupla[modello]</li>";
+                    echo "<li class='list-group-item'><img src='data/loghi/$tupla[marca].png' height='100'/><a style='color: #000;'href='VisualizzaModello.php?modello=$tupla[modello]&idmod=$tupla[idmodello]'>$tupla[marca] $tupla[modello]</a></li>";
                     echo "</ul>";
                     echo "<br>";
                 }
@@ -67,7 +68,7 @@ require('Session.php');
                     if(!is_null($tupla2['foto'])||$tupla2['foto']!=''){
                         echo"<img src='http://localhost/Social-cars/data/$tupla2[foto]'/>";
                     }
-                    echo "<li class='list-group-item'><img src='http://localhost/Social-Cars/data/loghi/$tupla2[marca].png' height='100'/>$tupla2[marca] $tupla2[modello]</li>";
+                    echo "<li class='list-group-item'><img src='data/loghi/$tupla2[marca].png' height='100'/><a style='color: #000;'href='VisualizzaModello.php?modello=$tupla2[modello]&idmod=$tupla2[idmodello]'>$tupla2[marca] $tupla2[modello]</a></li>";
                     echo "</ul>";
                     echo "<br>";
                 }
@@ -79,7 +80,7 @@ require('Session.php');
             </div>
         <?php
         } 
-        $query3 = "SELECT * FROM recensione, utente, modello WHERE recensione.idUtente=utente.idUtente AND recensione.idmodello=modello.idmodello AND Username='$username'";
+        $query3 = "SELECT * FROM recensione, utente, modello WHERE recensione.idUtente=utente.idUtente AND recensione.idmodello=modello.idmodello AND Username='$username' ORDER BY dataInserimento DESC";
         $result3 = mysqli_query($connection, $query3);
         echo"<hr>";
         echo"<h1>Recensioni</h1>";
@@ -87,7 +88,8 @@ require('Session.php');
             while ($tupla3 = mysqli_fetch_array($result3)) {
                 echo "<ul class='list-group'>";
                 if (mysqli_num_rows($result3) != 0) {
-                    echo "<li class='list-group-item active' aria-current='true'>Recensione di: <a href='VisualizzaProfilo.php?username=$tupla3[Username]'>$tupla3[Username]</a><br>Data pubblicazione: " . $tupla3['dataInserimento']."<br>Macchina: ".$tupla3['marca']." ".$tupla3['modello'];
+                    $dataCorretta= date("d-m-y",strtotime($tupla3['dataInserimento']));
+                    echo "<li class='list-group-item active' aria-current='true'>Recensione di: <a href='VisualizzaProfilo.php?username=$tupla3[Username]'>$tupla3[Username]</a><br>Data pubblicazione: " . $dataCorretta."<br>Macchina: <a href='VisualizzaModello.php?modello=$tupla3[modello]&idmod=$tupla3[idmodello]'>".$tupla3['marca']." ".$tupla3['modello']."</a>";
                     echo "</li>";
                     echo "<li class='list-group-item'>$tupla3[testo]</li>";
                     echo "</ul>";

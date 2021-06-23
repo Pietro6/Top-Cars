@@ -16,4 +16,5 @@
         $query = "DELETE FROM `macchine`.`auto$scelta` WHERE (`idauto$scelta` = '$id');";
     }
     $result = mysqli_query($connection, $query);
-    header('location: ' . $_SERVER['HTTP_REFERER']);	
+    header('location: ' . $_SERVER['HTTP_REFERER']);
+?>	

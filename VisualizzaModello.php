@@ -29,7 +29,8 @@ require('Session.php');
                     <a href="https://www.facebook.com/pietro.minelli.589"><img src=" http://localhost/Social-Cars/data/socials/facebook.png" class="d-inline-block align-text-top" height="35" width="35" alt="..." vertical-align:middle></a>
                     <a href="https://www.instagram.com/top_cars020/"><img src="http://localhost/Social-Cars/data/socials//instagram.png" class="d-inline-block align-text-top" height="35" width="35" alt="..."></a>
                     <a href="https://twitter.com/TopCars72640809"><img src="http://localhost/Social-Cars/data/socials/twitter.png" class="d-inline-block align-text-top" height="35" width="35" alt="..."></a>
-                    <a style="float: right;" href="ModificaProfilo.php"><button type="button" class="btn btn-warning">Profilo</button></a>
+                    <a style="float: right;" href="CercaProfili.php"><button type="button" class="btn btn-secondary">Cerca Utenti</button></a>
+                    <a style="float: right; margin-right: 2%;" href="ModificaProfilo.php"><button type="button" class="btn btn-warning">Profilo</button></a>
                     <a style="float: right; margin-right: 2%;" href="Logout.php"><button type="button" class="btn btn-info">Logout</button></a>
                 </div>
             </a>
@@ -51,9 +52,13 @@ require('Session.php');
                 echo "<img src='http://localhost/Social-cars/data/loghi/$tupla[marca].png' class='logo' height='150'>";
                 echo "<img style='margin-left: 2%; border: 1px solid black;' src ='http://localhost/Social-Cars/data/flags/$tupla[nazione].png' class='bandiera' width='225' height='150'>";
                 echo " &nbsp &nbsp &nbspCerca $tupla[modello] su:";
-                echo "<a href='https://www.autoscout24.it/lst/$tupla[marca]/$modelli[0]/?sort=standard&desc=0&ustate=N%2CU&size=20&page=1&cy=I&atype=C&fc=0&qry=$tupla[marca]&$modelli[0]'><img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/autoscout.jpg' height='6%' width='11%'></a>";
-                echo "<a href='https://www.subito.it/annunci-italia/vendita/auto/?q=$tupla[marca] $tupla[modello]&qso=true'><img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/subito.jpg' height='6%' width='11%'></a>";
-                $query1 = "SELECT * FROM recensione, utente WHERE recensione.idUtente=utente.idUtente AND idmodello=$tupla[idmodello]";
+                echo "<a target='_blank' href='https://www.autoscout24.it/lst/$tupla[marca]/$modelli[0]
+                /?sort=standard&desc=0&ustate=N%2CU&size=20&page=1&cy=I&atype=C&fc=0
+                &qry=$tupla[marca]&$modelli[0]'>                                                                                <img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/autoscout.jpg' height='6%' width='11%'></a>";
+                echo "<a target='_blank' href='https://www.subito.it/annunci-italia/vendita/auto/
+                ?q=$tupla[marca] $tupla[modello]&qso=true'>
+                <img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/subito.jpg' height='6%' width='11%'></a>";
+                $query1 = "SELECT * FROM recensione, utente WHERE recensione.idUtente=utente.idUtente AND idmodello=$tupla[idmodello] ORDER BY dataInserimento DESC";
                 $result1 = mysqli_query($connection, $query1);
                 echo "<br>";
                 echo "<br><br>";
@@ -101,8 +106,8 @@ require('Session.php');
                                 }
                                 
                             }
-
-                            echo "<li class='list-group-item active' aria-current='true'>Recensione di: <a href='VisualizzaProfilo.php?username=$tupla1[Username]'>$tupla1[Username]</a><br>Data pubblicazione: " . $tupla1['dataInserimento'];
+                            $dataCorretta= date("d-m-y",strtotime($tupla1['dataInserimento']));
+                            echo "<li class='list-group-item active' aria-current='true'>Recensione di: <a href='VisualizzaProfilo.php?username=$tupla1[Username]'>$tupla1[Username]</a><br>Data pubblicazione: " .$dataCorretta;
                             echo "</li>";
                             echo "<li class='list-group-item'>$tupla1[testo]</li>";
                             echo "</ul>";

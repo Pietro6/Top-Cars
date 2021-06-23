@@ -21,5 +21,12 @@
 input[type=submit]{
     background-color: #f00;
 }
+p{
+    background-color: #fff;
+    border-radius: 10px;
+    border-color: #00f;
+    text-align: center;
+    padding: 40px;
+}
 
 

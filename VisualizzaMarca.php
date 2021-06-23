@@ -24,7 +24,8 @@ require('Session.php');
                     <a href="https://www.facebook.com/pietro.minelli.589"><img src=" http://localhost/Social-Cars/data/socials/facebook.png" class="d-inline-block align-text-top" height="35" width="35" alt="..." vertical-align:middle></a>
                     <a href="https://www.instagram.com/top_cars020/"><img src="http://localhost/Social-Cars/data/socials//instagram.png" class="d-inline-block align-text-top" height="35" width="35" alt="..."></a>
                     <a href="https://twitter.com/TopCars72640809"><img src="http://localhost/Social-Cars/data/socials/twitter.png" class="d-inline-block align-text-top" height="35" width="35" alt="..."></a>
-                    <a style="float: right;" href="ModificaProfilo.php"><button type="button" class="btn btn-warning">Profilo</button></a>
+                    <a style="float: right;" href="CercaProfili.php"><button type="button" class="btn btn-secondary">Cerca Utenti</button></a>
+                    <a style="float: right; margin-right: 2%;" href="ModificaProfilo.php"><button type="button" class="btn btn-warning">Profilo</button></a>
                     <a style="float: right; margin-right: 2%;" href="Logout.php"><button type="button" class="btn btn-info">Logout</button></a>
                 </div>
             </a>
@@ -42,8 +43,8 @@ require('Session.php');
                 echo "<img src='http://localhost/Social-cars/data/loghi/$tupla[marca].png' class='logo' height='150'>";
                 echo "<img style='margin-left: 2%; border: 1px solid black;' src ='http://localhost/Social-Cars/data/flags/$tupla[nazione].png' class='bandiera' width='225' height='150'>";
                 echo " &nbsp &nbsp &nbspCerca $tupla[marca] su:";
-                echo "<a href='https://www.autoscout24.it/lst/$tupla[marca]?sort=standard&desc=0&ustate=N%2CU&size=20&page=1&cy=I&atype=C&fc=0&qry=$tupla[marca]&'><img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/autoscout.jpg' height='6%' width='11%'></a>";
-                echo "<a href='https://www.subito.it/annunci-italia/vendita/auto/?q=$tupla[marca]&qso=true'><img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/subito.jpg' height='6%' width='11%'></a>";
+                echo "<a target='_blank' href='https://www.autoscout24.it/lst/$tupla[marca]?sort=standard&desc=0&ustate=N%2CU&size=20&page=1&cy=I&atype=C&fc=0&qry=$tupla[marca]&'><img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/autoscout.jpg' height='6%' width='11%'></a>";
+                echo "<a target='_blank' href='https://www.subito.it/annunci-italia/vendita/auto/?q=$tupla[marca]&qso=true'><img style='margin-left: 2%; border-radius: 10%; border: 1px solid black;' src='http://localhost/Social-Cars/data/link/subito.jpg' height='6%' width='11%'></a>";
         ?>
                 <br><br><br>
                 <table class="table">
